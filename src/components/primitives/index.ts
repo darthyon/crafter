@@ -1,9 +1,17 @@
 export { Card } from '@/components/primitives/Card';
+export { BottomActionDock } from '@/components/primitives/BottomActionDock';
+export { BottomSheet } from '@/components/primitives/BottomSheet';
+export { Button } from '@/components/primitives/Button';
+export { ConfirmDialog } from '@/components/primitives/ConfirmDialog';
+export { DashedButton } from '@/components/primitives/DashedButton';
 export { Divider } from '@/components/primitives/Divider';
+export { DockAction } from '@/components/primitives/DockAction';
 export { IconButton } from '@/components/primitives/IconButton';
 export { PressableRow } from '@/components/primitives/PressableRow';
+export { ScreenHeader } from '@/components/primitives/ScreenHeader';
 export { SearchField } from '@/components/primitives/SearchField';
 export { SectionHeader } from '@/components/primitives/SectionHeader';
 export { Text } from '@/components/primitives/Text';
 export type { TextVariant, TextProps } from '@/components/primitives/Text';
-
+export { TextArea } from '@/components/primitives/TextArea';
+export { TextField } from '@/components/primitives/TextField';
