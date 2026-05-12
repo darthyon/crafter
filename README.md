@@ -1,50 +1,75 @@
-# Welcome to your Expo app 👋
+# Crafter Notes
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A quiet companion notebook for crafting-heavy experiences — a small workbench beside the game.
 
-## Get started
+Crafter is **writing-first**: quick capture on Home, pinned notes for active context, search for retrieval, and folders for “worlds”.
 
-1. Install dependencies
+## What this repo contains
 
-   ```bash
-   npm install
-   ```
+- **Mobile app:** Expo + React Native using `expo-router`
+- **Product + design docs:** `docs/*` (vision, product, flows, design system rules)
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Quick start
 
 ```bash
-npm run reset-project
+npm install
+npm run start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Common targets:
 
-## Learn more
+```bash
+npm run ios
+npm run android
+npm run web
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Repo workflow (must-follow)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+These guardrails exist to prevent UI drift and keep implementation consistent. This is a summary of `docs/design.md`.
 
-## Join the community
+### 1) Source of truth (per screen)
+- Every screen must have a matching PNG mock in `ui screens and characters/*.png`.
+- The PNG is the visual truth — code must match it before moving on.
 
-Join our community of developers creating universal apps.
+### 2) Build order (always the same)
+Build in this order:
+1. **Repo** (`src/lib/**`): async repository interface + in-memory implementation (mock-real, server-shaped).
+2. **Store** (`src/stores/**`): screen store consumes repo only (no fixture imports in UI).
+3. **Screen** (`app/**`): screen reads from store and renders UI.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Rule: **Screens never import fixtures directly**. If you need data, add it to the repo and expose it through the store.
+
+### 3) UI composition rules (hard)
+- Screens compose only primitives from `src/components/primitives/*`.
+- No raw React Native `Text`, `Pressable`, or touchables in `app/**` screens.
+- No hardcoded colors/spacing/font weights in screens. Use:
+  - Tokens (`src/styles/tokens.ts`)
+  - Theme colors (`src/styles/theme.tsx`, `src/styles/themes.ts`)
+  - Text variants (`src/components/primitives/Text.tsx`)
+
+Rule of thumb: if a screen needs a new UI shape, **add/extend a primitive** — don’t create one-offs in screens.
+
+### 4) A11y + interaction rules (encoded in primitives)
+- Minimum tap target: **44x44**.
+- Icon-only actions must have `accessibilityLabel` (and `accessibilityHint` when useful).
+- Every interactive element must have visible pressed/disabled feedback.
+
+### 5) Contrast rule (WCAG)
+Any time you add a new text role, placeholder usage, or change theme colors, run:
+
+```bash
+node scripts/contrast-check.mjs
+```
+
+### 6) When you need something new
+- New UI pattern → add/extend a primitive in `src/components/primitives/*`.
+- New data requirement → extend the repo (`src/lib/**`) and store (`src/stores/**`), then consume it in the screen.
+- New visual spec → add/update the PNG mock for that screen and keep code aligned.
+
+## Where to read next
+
+- `docs/vision.md` — product essence and philosophy
+- `docs/product.md` — one-liner, users, spine, rules
+- `docs/flows.md` — primary user flows
+- `docs/design.md` — full design system + workflow guardrails

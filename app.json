@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "expo-crafter",
-    "slug": "expo-crafter",
+    "name": "Crafter",
+    "slug": "crafter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "expocrafter",
+    "scheme": "crafter",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

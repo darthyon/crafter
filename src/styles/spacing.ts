@@ -1,0 +1,18 @@
+/**
+ * Spacing scale — 4px base unit.
+ *
+ * Use these tokens instead of arbitrary values.
+ * xs-sm-md-lg-xl-2xl-3xl-4xl covers most layout needs.
+ */
+export const spacing = {
+  xs: 4,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 20,
+  '2xl': 24,
+  '3xl': 32,
+  '4xl': 40,
+} as const;
+
+export type SpacingToken = keyof typeof spacing;
