@@ -40,6 +40,7 @@ export default function HomeScreen() {
     load,
     setDraft,
     saveDraft,
+    openDraftEditor,
     openFolders,
     openSearch,
     openPinned,
@@ -108,7 +109,7 @@ export default function HomeScreen() {
               <Divider style={styles.actionDivider} />
 
               <IconButton
-                onPress={() => router.push('/editor')}
+                onPress={() => openDraftEditor(router.push)}
                 accessibilityLabel="Expand quick note"
                 accessibilityHint="Opens the full editor with this draft"
                 style={styles.actionButton}

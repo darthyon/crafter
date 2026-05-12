@@ -46,6 +46,11 @@ export const fontSizes = {
   caption: { fontSize: 12, lineHeight: 16 },
   /** Micro labels — small-caps section labels */
   label: { fontSize: 12, lineHeight: 16 },
+
+  /** Editor title input */
+  editorTitle: { fontSize: 32, lineHeight: 40 },
+  /** Editor body input (editorial reading size) */
+  editorBody: { fontSize: 20, lineHeight: 30 },
 } as const;
 
 export type FontToken = keyof typeof fonts;

@@ -16,9 +16,11 @@ type HomeActions = {
   openPinned: (navigate: (href: any) => void, id: string) => void;
   openFolders: (navigate: (href: any) => void) => void;
   openSearch: (navigate: (href: any) => void) => void;
+  openDraftEditor: (navigate: (href: any) => void) => void;
 };
 
 const emptyDraft: QuickNoteDraft = {
+  title: '',
   body: '',
   isDirty: false,
   updatedAt: new Date(0).toISOString(),
@@ -78,7 +80,7 @@ export const useHomeStore = create<HomeState & HomeActions>((set, get) => ({
   },
 
   openPinned: (navigate, _id) => {
-    navigate('/editor');
+    navigate({ pathname: '/editor', params: { mode: 'entry', id: _id } });
   },
 
   openFolders: (navigate) => {
@@ -87,5 +89,9 @@ export const useHomeStore = create<HomeState & HomeActions>((set, get) => ({
 
   openSearch: (navigate) => {
     navigate('/search');
+  },
+
+  openDraftEditor: (navigate) => {
+    navigate({ pathname: '/editor', params: { mode: 'draft' } });
   },
 }));

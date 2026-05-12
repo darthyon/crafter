@@ -12,7 +12,9 @@ export type TextVariant =
   | 'placeholder'
   | 'cardTitle'
   | 'cardSubtitle'
-  | 'cardBody';
+  | 'cardBody'
+  | 'editorBody'
+  | 'editorTitle';
 
 export type TextProps = RNTextProps & {
   variant?: TextVariant;

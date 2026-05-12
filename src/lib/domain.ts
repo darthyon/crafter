@@ -26,8 +26,8 @@ export type Folder = {
 };
 
 export type QuickNoteDraft = {
+  title: string;
   body: string;
   updatedAt: ISODateString;
   isDirty: boolean;
 };
-

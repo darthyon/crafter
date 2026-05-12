@@ -38,6 +38,10 @@ export function getTextStyle(variant: string, colors: ThemeColors) {
         lineHeight: 22,
         color: colors.textTertiary,
       };
+    case 'editorBody':
+      return { fontFamily: fonts.display, ...fontSizes.editorBody, color: colors.text };
+    case 'editorTitle':
+      return { fontFamily: fonts.ui, ...fontSizes.editorTitle, color: colors.text };
     default:
       return { fontFamily: fonts.ui, ...fontSizes.body, color: colors.text };
   }
