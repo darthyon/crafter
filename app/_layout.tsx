@@ -49,6 +49,9 @@ export default function RootLayout() {
         <Stack.Screen name="search" options={{ animation: 'slide_from_bottom' }} />
         <Stack.Screen name="editor" options={{ animation: 'slide_from_bottom' }} />
         <Stack.Screen name="folders" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="foldersAll" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="recent" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="folder" options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="pinned" options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="account" options={{ animation: 'slide_from_right' }} />
       </Stack>

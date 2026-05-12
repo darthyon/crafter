@@ -1,11 +1,30 @@
-import type { Entry, EntryId, QuickNoteDraft } from '@/lib/domain';
+import type { Entry, EntryId, Folder, FolderId, QuickNoteDraft } from '@/lib/domain';
 
 function nowIso(): string {
   return new Date().toISOString();
 }
 
-function seededPinnedEntries(): Entry[] {
+function seededFolders(): Folder[] {
   const t = nowIso();
+  return [
+    { id: 'f1', name: 'Stardew Valley', iconId: 'farming-crops', createdAt: t, updatedAt: t },
+    { id: 'f2', name: 'Travellers Rest', iconId: 'crafter-default', createdAt: t, updatedAt: t },
+    { id: 'f3', name: 'Coral Island', iconId: 'crafter-default', createdAt: t, updatedAt: t },
+    { id: 'f4', name: 'Personal Recipes', iconId: 'cooking-recipe', createdAt: t, updatedAt: t },
+    { id: 'f5', name: 'Ideas', iconId: 'crafter-default', createdAt: t, updatedAt: t },
+    { id: 'f6', name: 'Field Notes', iconId: 'crafter-default', createdAt: t, updatedAt: t },
+  ];
+}
+
+function isoHoursAgo(hours: number): string {
+  return new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
+}
+
+function isoDaysAgo(days: number): string {
+  return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+}
+
+function seededEntries(folderIds: Record<string, FolderId>): Entry[] {
   return [
     {
       id: 'p1',
@@ -13,9 +32,10 @@ function seededPinnedEntries(): Entry[] {
       title: 'Cozy Throw Blanket',
       subtitle: 'Crochet Project',
       body: 'Wool yarn, 6mm hook.\nChain 120. Half double crochet in the back loop…',
+      folderId: folderIds.personal,
       isPinned: true,
-      createdAt: t,
-      updatedAt: t,
+      createdAt: isoDaysAgo(2),
+      updatedAt: isoHoursAgo(1),
     },
     {
       id: 'p2',
@@ -23,9 +43,10 @@ function seededPinnedEntries(): Entry[] {
       title: 'Honey & Apple Jam',
       subtitle: 'Recipe',
       body: '3 cups chopped apples\n3/4 cup honey\nJuice of 1/2 lemon…',
+      folderId: folderIds.personal,
       isPinned: true,
-      createdAt: t,
-      updatedAt: t,
+      createdAt: isoDaysAgo(3),
+      updatedAt: isoHoursAgo(3),
     },
     {
       id: 'p3',
@@ -33,9 +54,65 @@ function seededPinnedEntries(): Entry[] {
       title: 'Mini Terrarium',
       subtitle: 'DIY',
       body: 'Drainage layer: pebbles\nCharcoal layer\nMoss, soil, small…',
+      folderId: folderIds.ideas,
       isPinned: true,
-      createdAt: t,
-      updatedAt: t,
+      createdAt: isoDaysAgo(5),
+      updatedAt: isoDaysAgo(1),
+    },
+    {
+      id: 'p4',
+      iconId: 'crafter-default',
+      title: 'Granny Square Blanket',
+      subtitle: 'Crochet Project',
+      body: 'Make 30 squares\nJoin with slip stitch\nBorder: 2 rounds…',
+      folderId: folderIds.personal,
+      isPinned: true,
+      createdAt: isoDaysAgo(6),
+      updatedAt: isoDaysAgo(2),
+    },
+    {
+      id: 'p5',
+      iconId: 'crafter-default',
+      title: 'Mushroom Study',
+      subtitle: 'Field Notes',
+      body: 'Spore print observations\nCap color, gill type\nHabitat, notes…',
+      folderId: folderIds.fieldNotes,
+      isPinned: true,
+      createdAt: isoDaysAgo(8),
+      updatedAt: isoDaysAgo(4),
+    },
+    {
+      id: 'p6',
+      iconId: 'crafter-default',
+      title: 'Wildflower Embroidery',
+      subtitle: 'Embroidery',
+      body: 'DMC Thread Palette\nStitch Guide\nBack stitch for stems…',
+      folderId: folderIds.ideas,
+      isPinned: true,
+      createdAt: isoDaysAgo(10),
+      updatedAt: isoDaysAgo(7),
+    },
+    {
+      id: 'p7',
+      iconId: 'crafter-default',
+      title: 'Yarn Stash Tracker',
+      subtitle: 'Inventory',
+      body: 'Worsted Weight\nNeutrals: 14 skeins\nPastels: 9 skeins…',
+      folderId: folderIds.personal,
+      isPinned: true,
+      createdAt: isoDaysAgo(12),
+      updatedAt: isoDaysAgo(9),
+    },
+    {
+      id: 'p8',
+      iconId: 'crafter-default',
+      title: 'Plant Care Log',
+      subtitle: 'Care Log',
+      body: 'Water Mon, Wed, Fri\nBright indirect light\nRotate weekly…',
+      folderId: folderIds.ideas,
+      isPinned: true,
+      createdAt: isoDaysAgo(14),
+      updatedAt: isoDaysAgo(12),
     },
   ];
 }
@@ -43,12 +120,22 @@ function seededPinnedEntries(): Entry[] {
 type InMemoryState = {
   quickNoteDraft: QuickNoteDraft;
   entries: Entry[];
+  folders: Folder[];
 };
 
 const state: InMemoryState = {
   quickNoteDraft: { title: '', body: '', isDirty: false, updatedAt: nowIso() },
-  entries: seededPinnedEntries(),
+  folders: [],
+  entries: [],
 };
+
+// Initialize with stable references for repo consumers (in-memory).
+state.folders = seededFolders();
+state.entries = seededEntries({
+  personal: state.folders.find((f) => f.id === 'f4')!.id,
+  ideas: state.folders.find((f) => f.id === 'f5')!.id,
+  fieldNotes: state.folders.find((f) => f.id === 'f6')!.id,
+});
 
 export function readDb() {
   return state;

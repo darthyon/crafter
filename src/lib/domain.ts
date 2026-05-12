@@ -20,6 +20,7 @@ export type Entry = {
 export type Folder = {
   id: FolderId;
   name: string;
+  iconId?: IconId;
   imageUri?: string;
   createdAt: ISODateString;
   updatedAt: ISODateString;
