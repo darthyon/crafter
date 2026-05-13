@@ -1,20 +1,21 @@
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Rect } from 'react-native-svg';
 import type { IconProps } from './types';
 import { useColors } from '@/styles/theme';
 
 export function AccountPinned({ size = 24, color }: IconProps) {
   const colors = useColors();
-  const stroke = color ?? colors.text;
+  const ink = color ?? colors.text;
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path
-        d="M9 4 H15 L14 9 L18 12 H6 L10 9 Z"
-        stroke={stroke}
-        strokeWidth={1.5}
-        strokeLinejoin="round"
-      />
-      <Path d="M12 12 V20" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      {/* Head */}
+      <Rect x={9} y={5} width={6} height={2} fill={ink} />
+      {/* Neck */}
+      <Rect x={10} y={7} width={4} height={2} fill={ink} />
+      {/* Arms */}
+      <Rect x={8} y={9} width={8} height={2} fill={ink} />
+      {/* Point */}
+      <Rect x={11} y={11} width={2} height={8} fill={ink} />
+      <Rect x={10} y={19} width={4} height={1} fill={ink} />
     </Svg>
   );
 }
-

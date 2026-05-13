@@ -1,21 +1,23 @@
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Rect } from 'react-native-svg';
 import type { IconProps } from './types';
 import { useColors } from '@/styles/theme';
 
 export function AccountWords({ size = 24, color }: IconProps) {
   const colors = useColors();
-  const stroke = color ?? colors.text;
+  const ink = color ?? colors.text;
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path
-        d="M5 19 L9 15 L18 6 C19 5 20.5 6.5 19.5 7.5 L10.5 16.5 L6 19 Z"
-        stroke={stroke}
-        strokeWidth={1.5}
-        strokeLinejoin="round"
-      />
-      <Path d="M8.5 15.5 L10 17" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
-      <Path d="M14 7.5 L16.5 10" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      {/* Pen body (pixel diagonal) */}
+      <Rect x={7} y={17} width={2} height={2} fill={ink} />
+      <Rect x={9} y={15} width={2} height={2} fill={ink} />
+      <Rect x={11} y={13} width={2} height={2} fill={ink} />
+      <Rect x={13} y={11} width={2} height={2} fill={ink} />
+      <Rect x={15} y={9} width={2} height={2} fill={ink} />
+      <Rect x={17} y={7} width={2} height={2} fill={ink} />
+      {/* Tip */}
+      <Rect x={19} y={6} width={1} height={1} fill={ink} />
+      {/* Small ink trail */}
+      <Rect x={6} y={20} width={4} height={1} fill={ink} />
     </Svg>
   );
 }
-

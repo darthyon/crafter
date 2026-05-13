@@ -38,6 +38,16 @@ export function getTextStyle(variant: string, colors: ThemeColors) {
         lineHeight: 22,
         color: colors.textTertiary,
       };
+    case 'accountName':
+      return { fontFamily: fonts.displaySemiBold, ...fontSizes.accountName, color: colors.text };
+    case 'accountCardTitle':
+      return { fontFamily: fonts.displaySemiBold, ...fontSizes.title, color: colors.text };
+    case 'statNumber':
+      return { fontFamily: fonts.displaySemiBold, ...fontSizes.statNumber, color: colors.text };
+    case 'statLabel':
+      return { fontFamily: fonts.ui, ...fontSizes.bodySmall, color: colors.textTertiary };
+    case 'pillPrice':
+      return { fontFamily: fonts.displaySemiBold, ...fontSizes.title, color: colors.text };
     case 'editorBody':
       return { fontFamily: fonts.display, ...fontSizes.editorBody, color: colors.text };
     case 'editorTitle':

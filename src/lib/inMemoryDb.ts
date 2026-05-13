@@ -4,6 +4,28 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
+export type ThemePreference = 'system' | 'light' | 'dark';
+
+export type AccountProfile = {
+  displayName: string;
+  email: string;
+  bio: string;
+};
+
+export type AccountStats = {
+  notesWritten: number;
+  wordsSaved: number;
+  foldersCreated: number;
+  pinnedNotes: number;
+};
+
+export type AccountPlan = {
+  freeLimitNotes: number;
+  notesUsed: number;
+  plusUnlocked: boolean;
+  plusUnlockPriceUsd: number;
+};
+
 function seededFolders(): Folder[] {
   const t = nowIso();
   return [
@@ -121,12 +143,42 @@ type InMemoryState = {
   quickNoteDraft: QuickNoteDraft;
   entries: Entry[];
   folders: Folder[];
+  account: {
+    profile: AccountProfile;
+    stats: AccountStats;
+    plan: AccountPlan;
+  };
+  preferences: {
+    themePreference: ThemePreference;
+  };
 };
 
 const state: InMemoryState = {
   quickNoteDraft: { title: '', body: '', isDirty: false, updatedAt: nowIso() },
   folders: [],
   entries: [],
+  account: {
+    profile: {
+      displayName: 'Threadkeeper',
+      email: 'threadkeeper@craftor.app',
+      bio: 'Making little things, one stitch at a time.',
+    },
+    stats: {
+      notesWritten: 128,
+      wordsSaved: 18400,
+      foldersCreated: 12,
+      pinnedNotes: 3,
+    },
+    plan: {
+      freeLimitNotes: 150,
+      notesUsed: 128,
+      plusUnlocked: false,
+      plusUnlockPriceUsd: 5,
+    },
+  },
+  preferences: {
+    themePreference: 'system',
+  },
 };
 
 // Initialize with stable references for repo consumers (in-memory).

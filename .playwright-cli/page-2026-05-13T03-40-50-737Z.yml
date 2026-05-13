@@ -1,0 +1,92 @@
+- generic [ref=e8]:
+  - generic [ref=e9]:
+    - generic:
+      - button "Go back" [ref=e10] [cursor=pointer]
+      - generic [ref=e11]: Account
+  - generic [ref=e13]:
+    - generic:
+      - generic [ref=e14]:
+        - generic [ref=e15]: T
+        - button "Edit profile" [ref=e16] [cursor=pointer]
+      - generic:
+        - generic: Threadkeeper
+        - generic: threadkeeper@craftor.app
+        - generic [ref=e17]: Making little things, one stitch at a time.
+    - generic:
+      - generic [ref=e18]: STATS
+      - generic:
+        - generic [ref=e19]:
+          - img [ref=e21]
+          - generic [ref=e33]: "0"
+          - generic [ref=e34]: Notes written
+        - generic [ref=e35]:
+          - img [ref=e37]
+          - generic [ref=e46]: "0"
+          - generic [ref=e47]: Words saved
+        - generic [ref=e48]:
+          - img [ref=e50]
+          - generic [ref=e56]: "0"
+          - generic [ref=e57]: Folders created
+        - generic [ref=e58]:
+          - img [ref=e60]
+          - generic [ref=e66]: "0"
+          - generic [ref=e67]: Pinned notes
+    - generic:
+      - generic [ref=e68]: PLAN
+      - generic [ref=e69]:
+        - generic:
+          - generic:
+            - img
+            - generic [ref=e81]:
+              - generic [ref=e82]: Free plan
+              - generic [ref=e83]: Up to 150 notes
+          - generic [ref=e84]:
+            - generic [ref=e85]: 0 / 150
+            - progressbar
+      - generic [ref=e86]:
+        - generic:
+          - generic:
+            - img
+            - generic:
+              - generic:
+                - generic [ref=e98]: Crafter Plus
+                - generic [ref=e100]: PLUS
+              - generic: Unlimited notes. One-time unlock.
+              - generic:
+                - generic [ref=e101]: Support indie
+                - generic [ref=e102]: ·
+                - generic [ref=e103]: Unlock forever
+          - button "Unlock Crafter Plus" [ref=e104] [cursor=pointer]:
+            - generic [ref=e105]:
+              - generic [ref=e106]: $5
+              - generic [ref=e107]: Unlock
+    - generic:
+      - generic [ref=e108]: SUPPORT CRAFTER
+      - generic [ref=e109]:
+        - generic:
+          - generic:
+            - img
+            - generic [ref=e117]:
+              - generic [ref=e118]: Love Crafter?
+              - generic [ref=e119]: Buy me a coffee on Ko-fi
+              - generic [ref=e120]: Your support keeps this little project going.
+          - button "Support on Ko-fi" [ref=e121] [cursor=pointer]:
+            - generic [ref=e123]: Support on Ko-fi
+        - img [ref=e125]
+    - generic:
+      - generic [ref=e275]: SETTINGS
+      - generic [ref=e276]:
+        - button "Appearance" [ref=e277] [cursor=pointer]:
+          - generic [ref=e279]: Appearance
+          - generic [ref=e281]: System
+        - button "Export data" [ref=e282] [cursor=pointer]:
+          - generic [ref=e284]: Export data
+        - button "About Crafter" [ref=e285] [cursor=pointer]:
+          - generic [ref=e287]: About Crafter
+    - button "Log out" [ref=e288] [cursor=pointer]:
+      - generic [ref=e289]:
+        - img [ref=e290]
+        - generic [ref=e298]: Log out
+    - generic:
+      - generic [ref=e299]: Thanks for crafting with Crafter.
+      - generic [ref=e301]: Made with care by an indie maker.
