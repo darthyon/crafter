@@ -1,48 +1,185 @@
-import Svg, { Path, Circle } from 'react-native-svg';
+import Svg, { Rect } from 'react-native-svg';
 import { MascotProps } from './types';
 import { useColors } from '@/styles/theme';
 
+const VIEWBOX_WIDTH = 249;
+const VIEWBOX_HEIGHT = 270;
+
+const PIXELS = [
+  { x: 49, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 59, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 69, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 79, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 89, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 99, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 109, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 119, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 129, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 139, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 149, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 159, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 169, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 179, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 189, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 199, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 209, y: 0, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 10, w: 10, h: 10, fill: 'black' as const },
+  { x: 89, y: 10, w: 10, h: 10, fill: 'black' as const },
+  { x: 129, y: 10, w: 10, h: 10, fill: 'black' as const },
+  { x: 169, y: 10, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 10, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 20, w: 10, h: 10, fill: 'black' as const },
+  { x: 99, y: 20, w: 10, h: 10, fill: 'black' as const },
+  { x: 139, y: 20, w: 10, h: 10, fill: 'black' as const },
+  { x: 179, y: 20, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 20, w: 10, h: 10, fill: 'black' as const },
+  { x: 229, y: 20, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 30, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 30, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 30, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 40, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 40, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 40, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 40, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 40, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 50, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 50, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 50, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 50, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 50, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 60, w: 10, h: 10, fill: 'black' as const },
+  { x: 99, y: 60, w: 10, h: 10, fill: 'black' as const },
+  { x: 159, y: 60, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 60, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 60, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 70, w: 10, h: 10, fill: 'black' as const },
+  { x: 99, y: 70, w: 10, h: 10, fill: 'black' as const },
+  { x: 159, y: 70, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 70, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 70, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 80, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 80, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 80, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 80, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 80, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 90, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 90, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 90, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 90, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 90, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 100, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 100, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 100, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 110, w: 10, h: 10, fill: 'black' as const },
+  { x: 119, y: 110, w: 10, h: 10, fill: 'black' as const },
+  { x: 129, y: 110, w: 10, h: 10, fill: 'black' as const },
+  { x: 139, y: 110, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 110, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 110, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 120, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 120, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 120, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 120, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 120, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 130, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 130, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 130, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 130, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 130, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 140, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 140, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 140, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 150, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 150, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 150, w: 10, h: 10, fill: 'black' as const },
+  { x: 29, y: 160, w: 10, h: 10, fill: 'black' as const },
+  { x: 59, y: 160, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 219, y: 160, w: 10, h: 10, fill: 'black' as const },
+  { x: 229, y: 160, w: 10, h: 10, fill: 'black' as const },
+  { x: 39, y: 170, w: 10, h: 10, fill: 'black' as const },
+  { x: 59, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 69, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 79, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 109, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 119, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 129, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 139, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 149, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 169, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 179, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 189, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 199, y: 170, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 209, y: 170, w: 10, h: 10, fill: 'black' as const },
+  { x: 219, y: 170, w: 10, h: 10, fill: 'black' as const },
+  { x: 49, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 59, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 69, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 79, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 89, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 99, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 109, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 119, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 129, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 139, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 149, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 159, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 169, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 179, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 189, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 199, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 209, y: 180, w: 10, h: 10, fill: 'black' as const },
+  { x: 79, y: 190, w: 10, h: 10, fill: 'black' as const },
+  { x: 179, y: 190, w: 10, h: 10, fill: 'black' as const },
+  { x: 49, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 59, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 69, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 79, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 179, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 189, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 199, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 209, y: 200, w: 10, h: 10, fill: 'black' as const },
+  { x: 19, y: 210, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 89, y: 210, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 129, y: 210, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 149, y: 210, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 209, y: 210, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 239, y: 210, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 29, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 49, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 69, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 89, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 109, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 129, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 149, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 159, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 179, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 199, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+  { x: 229, y: 220, w: 10, h: 10, fill: '#DEDEDE' as const },
+] as const;
+
 /**
- * Mascot Idle — a small notebook-like companion resting.
+ * Mascot Idle — pixel-art Crafter (static frame).
  *
- * A tiny open book with two dot eyes and a soft smile.
- * Suitable for loading screens, empty states, and brand presence.
- *
- * ViewBox is 32x32 for a slightly larger presence than icons (24x24).
- * The mascot should feel like a quiet desk companion, not a character.
+ * Used for brand presence in TopBar and loading states.
+ * For subtle motion in notes/editor, use IdleAnimated.
  */
-export function Idle({ size = 32, color }: MascotProps) {
+export function Idle({ size = 32, color, secondaryColor }: MascotProps) {
   const colors = useColors();
-  const resolvedColor = color ?? colors.text;
+  const primary = color ?? colors.text;
+  const secondary = secondaryColor ?? colors.textTertiary;
+
   return (
-    <Svg width={size} height={size} viewBox="0 0 32 32" fill="none">
-      {/* Notebook body — open book */}
-      <Path
-        d="M6 8 C6 6 7 5 9 5 L16 5 L16 25 L9 25 C7 25 6 24 6 22 Z"
-        stroke={resolvedColor}
-        strokeWidth={1.5}
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M16 5 L23 5 C25 5 26 6 26 8 L26 22 C26 24 25 25 23 25 L16 25 Z"
-        stroke={resolvedColor}
-        strokeWidth={1.5}
-        strokeLinejoin="round"
-      />
-      {/* Spine */}
-      <Path d="M16 5 L16 25" stroke={resolvedColor} strokeWidth={1.5} />
-      {/* Left eye */}
-      <Circle cx="12" cy="14" r="1.5" fill={resolvedColor} />
-      {/* Right eye */}
-      <Circle cx="20" cy="14" r="1.5" fill={resolvedColor} />
-      {/* Smile */}
-      <Path
-        d="M13 19 C14 21 18 21 19 19"
-        stroke={resolvedColor}
-        strokeWidth={1.2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <Svg width={size} height={size} viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`} fill="none">
+      {PIXELS.map((p, idx) => (
+        <Rect
+          key={idx}
+          x={p.x}
+          y={p.y}
+          width={p.w}
+          height={p.h}
+          fill={p.fill === 'black' ? primary : secondary}
+        />
+      ))}
     </Svg>
   );
 }

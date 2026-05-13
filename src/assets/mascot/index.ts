@@ -21,6 +21,9 @@
 import type React from 'react';
 import { Idle } from './Idle';
 import { Fallback } from './Fallback';
+import { Writing01 } from './Writing01';
+import { Writing02 } from './Writing02';
+import { IdleAnimated } from './IdleAnimated';
 import type { MascotProps } from './types';
 
 export type { MascotProps } from './types';
@@ -52,6 +55,8 @@ type MascotComponent = React.FC<MascotProps>;
  */
 const MASCOT_MAP: Record<string, MascotComponent> = {
   idle: Idle,
+  'writing-01': Writing01,
+  'writing-02': Writing02,
 };
 
 /**
@@ -81,4 +86,7 @@ export function hasMascot(state: MascotState | string): boolean {
 
 // Re-export individual components for direct tree-shakeable imports.
 export { Idle } from './Idle';
+export { IdleAnimated } from './IdleAnimated';
+export { Writing01 } from './Writing01';
+export { Writing02 } from './Writing02';
 export { Fallback } from './Fallback';

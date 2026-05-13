@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { TopBar } from '@/components/layout/TopBar';
-import { Idle } from '@/assets/mascot';
+import { IdleAnimated } from '@/assets/mascot/IdleAnimated';
 import { getIcon } from '@/assets/icons';
 import { Card, Divider, IconButton, PressableRow, SearchField, SectionHeader, Text } from '@/components/primitives';
 import { fonts, spacing } from '@/styles/tokens';
@@ -131,7 +131,7 @@ export default function HomeScreen() {
               accessibilityLabel="Quick note"
             />
             <View style={styles.quickNoteMascot}>
-              <Idle size={28} color={colors.textTertiary} />
+              <IdleAnimated size={28} color={colors.textTertiary} />
             </View>
           </Card>
         </View>
