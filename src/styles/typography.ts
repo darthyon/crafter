@@ -47,6 +47,11 @@ export const fontSizes = {
   /** Micro labels — small-caps section labels */
   label: { fontSize: 12, lineHeight: 16 },
 
+  /** Account profile name */
+  accountName: { fontSize: 26, lineHeight: 32 },
+  /** Account stat numerals */
+  statNumber: { fontSize: 28, lineHeight: 34 },
+
   /** Editor title input */
   editorTitle: { fontSize: 32, lineHeight: 40 },
   /** Editor body input (editorial reading size) */

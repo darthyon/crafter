@@ -13,6 +13,11 @@ export type TextVariant =
   | 'cardTitle'
   | 'cardSubtitle'
   | 'cardBody'
+  | 'accountName'
+  | 'accountCardTitle'
+  | 'statNumber'
+  | 'statLabel'
+  | 'pillPrice'
   | 'editorBody'
   | 'editorTitle';
 

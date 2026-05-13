@@ -1,18 +1,27 @@
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Rect } from 'react-native-svg';
 import type { IconProps } from './types';
 import { useColors } from '@/styles/theme';
 
 export function AccountPlusWand({ size = 24, color }: IconProps) {
   const colors = useColors();
-  const stroke = color ?? colors.text;
+  const ink = color ?? colors.text;
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path d="M6 18 L18 6" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
-      <Path d="M15.5 5.5 L18.5 8.5" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
-      <Path d="M7 7 L8 9" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
-      <Path d="M5 10 L7 11" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
-      <Path d="M10 5 L11 7" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      {/* Sparkles */}
+      <Rect x={6} y={6} width={1} height={1} fill={ink} />
+      <Rect x={7} y={5} width={1} height={3} fill={ink} />
+      <Rect x={5} y={7} width={3} height={1} fill={ink} />
+
+      <Rect x={16} y={4} width={1} height={1} fill={ink} />
+      <Rect x={17} y={3} width={1} height={3} fill={ink} />
+      <Rect x={15} y={5} width={3} height={1} fill={ink} />
+
+      {/* Wand diagonal (chunky pixel) */}
+      <Rect x={7} y={17} width={2} height={2} fill={ink} />
+      <Rect x={9} y={15} width={2} height={2} fill={ink} />
+      <Rect x={11} y={13} width={2} height={2} fill={ink} />
+      <Rect x={13} y={11} width={2} height={2} fill={ink} />
+      <Rect x={15} y={9} width={2} height={2} fill={ink} />
     </Svg>
   );
 }
-

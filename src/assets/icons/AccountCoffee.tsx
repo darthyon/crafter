@@ -1,26 +1,22 @@
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Rect } from 'react-native-svg';
 import type { IconProps } from './types';
 import { useColors } from '@/styles/theme';
 
 export function AccountCoffee({ size = 24, color }: IconProps) {
   const colors = useColors();
-  const stroke = color ?? colors.text;
+  const ink = color ?? colors.text;
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path
-        d="M6 8 H14 V14 C14 16 12.5 18 10 18 C7.5 18 6 16 6 14 Z"
-        stroke={stroke}
-        strokeWidth={1.5}
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M14 9 H16 C17.5 9 18.5 10 18.5 11.5 C18.5 13 17.5 14 16 14 H14"
-        stroke={stroke}
-        strokeWidth={1.5}
-        strokeLinejoin="round"
-      />
-      <Path d="M6 20 H14" stroke={stroke} strokeWidth={1.5} strokeLinecap="round" />
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      {/* Cup body */}
+      <Rect x={7} y={8} width={9} height={2} fill={ink} />
+      <Rect x={6} y={10} width={2} height={7} fill={ink} />
+      <Rect x={14} y={10} width={2} height={7} fill={ink} />
+      <Rect x={7} y={17} width={9} height={2} fill={ink} />
+      {/* Handle */}
+      <Rect x={16} y={11} width={2} height={5} fill={ink} />
+      <Rect x={18} y={12} width={1} height={3} fill={ink} />
+      {/* Saucer */}
+      <Rect x={6} y={20} width={12} height={1} fill={ink} />
     </Svg>
   );
 }
-
