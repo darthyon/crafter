@@ -4,7 +4,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
-import { Idle } from '@/assets/mascot';
+import { IdleAnimated } from '@/assets/mascot/IdleAnimated';
 import {
   BottomSheet,
   Button,
@@ -218,7 +218,7 @@ export default function EditorScreen() {
             />
 
             <View style={styles.mascot}>
-              <Idle size={34} color={colors.textTertiary} />
+              <IdleAnimated size={34} color={colors.textTertiary} />
             </View>
           </View>
 
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
   mascot: {
     position: 'absolute',
     right: spacing.lg,
-    top: spacing['3xl'],
+    bottom: spacing.lg,
     opacity: 0.85,
     pointerEvents: 'none',
   },
